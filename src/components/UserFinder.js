@@ -1,25 +1,21 @@
 import { Fragment, useState, useEffect, Component } from "react";
 import Users from "./Users";
 import classes from "./UserFinder.module.css";
-
-const DUMMY_USERS = [
-  { id: "u1", name: "정민" },
-  { id: "u2", name: "소정" },
-  { id: "u3", name: "창현" },
-];
+import UsersContext from "../store/users-context";
 
 class UserFinder extends Component {
+  static contextType = UsersContext;
   constructor() {
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
   }
 
   componentDidMount() {
     //http에 요청
-    this.setState({ filteredUsers: DUMMY_USERS });
+    this.setState({ filteredUsers: this.context.users });
   }
 
   //class컴포넌트에는 useEffect가 없으므로 아래의 방법으로 사용한다.
@@ -27,7 +23,7 @@ class UserFinder extends Component {
     //무한루프가 되는것을 막기위해 If문을 사용하여 이전의 상태와 비교하여 다르면 실행하도록 함.
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
-        filteredUsers: DUMMY_USERS.filter((user) =>
+        filteredUsers: this.context.users.filter((user) =>
           user.name.includes(this.state.searchTerm)
         ),
       });
