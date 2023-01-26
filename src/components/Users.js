@@ -3,12 +3,6 @@ import User from "./User";
 
 import classes from "./Users.module.css";
 
-const DUMMY_USERS = [
-  { id: "u1", name: "정민" },
-  { id: "u2", name: "소정" },
-  { id: "u3", name: "창현" },
-];
-
 class Users extends Component {
   //useState훅 대신 classcomponent에서 state사용방법
   constructor() {
@@ -28,7 +22,7 @@ class Users extends Component {
   render() {
     const usersList = (
       <ul>
-        {DUMMY_USERS.map((user) => (
+        {this.props.users.map((user) => (
           <User key={user.id} name={user.name} />
         ))}
       </ul>
@@ -44,6 +38,7 @@ class Users extends Component {
     );
   }
 }
+
 
 // const Users = () => {
 //   const [showUsers, setShowUsers] = useState(true);
