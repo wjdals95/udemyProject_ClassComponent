@@ -5,6 +5,7 @@ const DUMMY_USERS = [
   { id: "u1", name: "정민" },
   { id: "u2", name: "소정" },
   { id: "u3", name: "창현" },
+  { id: "u4", name: "채현" },
 ];
 
 function App() {

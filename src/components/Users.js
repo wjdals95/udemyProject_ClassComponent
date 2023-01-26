@@ -12,6 +12,18 @@ class Users extends Component {
       more: "Test",
     };
   }
+
+  componentDidUpdate() {
+    // try {
+    //   someCodeWhichMightFail();
+    // } catch (err) {
+    //   //handle error
+    // }
+    if (this.props.users.length === 0) {
+      throw new Error("No users provided!");
+    }
+  }
+
   //class컴포넌트에서는 메소드를 정의 하는 방법에는 아래의 방식이 보편적이다
   toggleUsersHandler() {
     // this.state.showUsers = false // 이렇게 쓰는 것 아님
@@ -38,7 +50,6 @@ class Users extends Component {
     );
   }
 }
-
 
 // const Users = () => {
 //   const [showUsers, setShowUsers] = useState(true);
